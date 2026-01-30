@@ -1,0 +1,15 @@
+# Build folders
+build/
+**/build/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# Qt
+*.user
+
+# Logs / temporales
+*.log
+*.tmp
