@@ -40,6 +40,7 @@ char Carpeta::getTipo() {
     return 'C'; // Carpeta
 }
 
+// ========== LIBRE: CÁLCULO DE PESO DE CARPETAS ==========
 int Carpeta::obtenerPeso() {
     int total = 0;
     
@@ -50,6 +51,7 @@ int Carpeta::obtenerPeso() {
     return total;
 }
 
+// ========== PUNTO 2: ORDENAMIENTO CON STL ==========
 void Carpeta::ordenarPorNombre() {
     sort(elementos.begin(), elementos.end(),
          [](Nodo* a, Nodo* b) {

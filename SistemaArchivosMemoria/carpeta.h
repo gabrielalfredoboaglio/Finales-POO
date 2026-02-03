@@ -1,6 +1,8 @@
 #ifndef CARPETA_H
 #define CARPETA_H
 
+// ========== PUNTO 1: DISEÑO DEL SISTEMA ==========
+
 #include "nodo.h"
 #include <vector>
 #include <algorithm>

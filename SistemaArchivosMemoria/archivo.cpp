@@ -23,6 +23,7 @@ char Archivo::getTipo() {
     return 'A'; // Archivo
 }
 
+// ========== LIBRE: PESO DE ARCHIVOS ==========
 int Archivo::obtenerPeso() {
     return peso;
 }

@@ -62,7 +62,7 @@ Carpeta* Gestora::buscarCarpetaPorPath(string path) {
     return actual;
 }
 
-// ========== COMANDOS DEL SISTEMA ==========
+// ========== PUNTO 2: COMANDOS DEL SISTEMA ==========
 
 bool Gestora::mkdir(string nombre) {
     if(carpetaActual->existeElemento(nombre)) {
@@ -125,7 +125,7 @@ bool Gestora::cd(string nombre) {
 void Gestora::ls() {
     vector<Nodo*> elementos = carpetaActual->getElementos();
     
-    // Ordenar por nombre
+    // Ordenar por nombre usando STL
     Carpeta* carpeta = dynamic_cast<Carpeta*>(carpetaActual);
     if(carpeta != nullptr) {
         carpeta->ordenarPorNombre();
@@ -152,7 +152,7 @@ void Gestora::lsp() {
     
     vector<Nodo*> elementos = carpetaActual->getElementos();
     
-    // Ordenar por nombre
+    // Ordenar por nombre usando STL
     Carpeta* carpeta = dynamic_cast<Carpeta*>(carpetaActual);
     if(carpeta != nullptr) {
         carpeta->ordenarPorNombre();

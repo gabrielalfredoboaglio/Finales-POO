@@ -1,6 +1,8 @@
 #ifndef ARCHIVO_H
 #define ARCHIVO_H
 
+// ========== PUNTO 1: DISEÑO DEL SISTEMA ==========
+
 #include "nodo.h"
 using namespace std;
 

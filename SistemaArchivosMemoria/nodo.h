@@ -1,6 +1,8 @@
 #ifndef NODO_H
 #define NODO_H
 
+// ========== PUNTO 1: DISEÑO DEL SISTEMA ==========
+
 #include <string>
 #include <iostream>
 using namespace std;

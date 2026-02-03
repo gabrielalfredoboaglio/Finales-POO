@@ -6,7 +6,6 @@ int main()
 {
     Gestora gestora;
 
-    // Comandos del sistema
     gestora.mkdir("documentos");
     gestora.mkdir("imagenes");
     gestora.touch("archivo1.txt", 1024);
