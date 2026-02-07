@@ -1,7 +1,7 @@
 #ifndef VENTA_H
 #define VENTA_H
 
-
+using namespace std;
 
 class Venta {
 private:
@@ -20,7 +20,6 @@ public:
     void setNroCliente(int nro);
     void setCantidad(int cant);
     void setMontoTotal(double monto);
-
-
 };
+
 #endif

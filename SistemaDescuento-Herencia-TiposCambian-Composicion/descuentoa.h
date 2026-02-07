@@ -1,17 +1,18 @@
 #ifndef DESCUENTOA_H
 #define DESCUENTOA_H
 
-#include "Descuento.h"
+#include "descuento.h"
+using namespace std;
 
-// ESTRATEGIA CONCRETA TIPO A
-// Aplica TODOS los descuentos (suma cantidad + monto)
+// ========== EJERCICIO 1: Tipo A - Suma ambos descuentos ==========
+
 class DescuentoA : public Descuento {
 public:
     DescuentoA();
     ~DescuentoA();
 
-    double calcularDescuento(int cantTotal, double montoTotal) const override;
-    char getTipo() const override;
+    double calcularDescuento(int cantTotal, double montoTotal);
+    char getTipo();
 };
 
 #endif

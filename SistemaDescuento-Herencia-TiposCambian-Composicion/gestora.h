@@ -1,19 +1,22 @@
 #ifndef GESTORA_H
 #define GESTORA_H
 
+#include "cliente.h"
+#include "venta.h"
 #include <vector>
-#include "Cliente.h"
-#include "Venta.h"
-
+#include <fstream>
 using namespace std;
 
-// ========== STRUCTS PARA ARCHIVOS ==========
+// ========== STRUCTS PARA ARCHIVOS BINARIOS ==========
+
+// Archivo: cliente.dat
 struct ClienteArchivo {
     int nro;
     char nombre[200];
     char tipo;
 };
 
+// Archivo: ventaAnual.dat
 struct VentaArchivo {
     int nro_cliente;
     int cantidad;
@@ -21,6 +24,7 @@ struct VentaArchivo {
 };
 
 // ========== CLASE GESTORA ==========
+
 class Gestora {
 private:
     vector<Cliente*> clientes;
@@ -35,14 +39,26 @@ public:
     Gestora();
     ~Gestora();
 
-    // Punto 2: Calcular descuento para una nueva venta
+    // Ejercicio 3: Leer archivos binarios
+    void leerArchivos(char* archClientes, char* archVentas);
+
+    // Guardar archivos binarios
+    void guardarArchivos(char* archClientes, char* archVentas);
+
+    // Ejercicio 2: Calcular descuento para una nueva venta
     double calcularDescuentoNuevaVenta(int nro_cliente, int cantidad, double monto);
 
-    // Punto 3: Leer archivos
-    void leerArchivos();
+    // Cambiar tipo de cliente
+    void cambiarTipoCliente(int nro_cliente, char nuevoTipo);
 
-    // NUEVO: Método para cambiar el tipo de un cliente
-    bool cambiarTipoCliente(int nro_cliente, char nuevoTipo);
+    // Ejercicio 4: Métodos con STL
+    vector<Cliente*> obtenerClientesConMasItems();
+    double obtenerMontoTotalVentas();
+    vector<char*> obtenerNombresRepetidos();
+
+    // Getters
+    vector<Cliente*> getClientes();
+    vector<Venta> getVentas();
 };
 
 #endif

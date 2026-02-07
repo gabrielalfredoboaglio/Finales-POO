@@ -1,17 +1,16 @@
 #ifndef DESCUENTO_H
 #define DESCUENTO_H
 
-// ESTRATEGIA BASE - Define la interfaz para calcular descuentos
+using namespace std;
+
+// ========== EJERCICIO 1: Clase abstracta Descuento (Estrategia) ==========
+
 class Descuento {
 public:
+    virtual ~Descuento();
 
-     ~Descuento() {}
-
-    // Método virtual puro que cada estrategia concreta implementará
-    virtual double calcularDescuento(int cantTotal, double montoTotal) const = 0;
-
-    // Retorna el tipo de descuento ('A', 'B', 'C')
-    virtual char getTipo() const = 0;
+    virtual double calcularDescuento(int cantTotal, double montoTotal) = 0;
+    virtual char getTipo() = 0;
 };
 
 #endif

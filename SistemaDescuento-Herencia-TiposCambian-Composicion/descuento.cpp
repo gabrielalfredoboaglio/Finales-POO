@@ -1,9 +1,6 @@
-#include "Descuento.h"
+#include "descuento.h"
 
-// Descuento es una clase abstracta pura (interfaz)
-// Solo necesita el destructor virtual implementado
+using namespace std;
 
 Descuento::~Descuento() {
-    // Destructor vacío
-    // Las clases derivadas se encargan de su propia limpieza
 }

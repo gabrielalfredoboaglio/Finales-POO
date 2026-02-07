@@ -1,17 +1,18 @@
 #ifndef DESCUENTOB_H
 #define DESCUENTOB_H
 
-#include "Descuento.h"
+#include "descuento.h"
+using namespace std;
 
-// ESTRATEGIA CONCRETA TIPO B
-// Solo aplica descuento por monto anual
+// ========== EJERCICIO 1: Tipo B - Solo descuento por monto ==========
+
 class DescuentoB : public Descuento {
 public:
     DescuentoB();
     ~DescuentoB();
 
-    double calcularDescuento(int cantTotal, double montoTotal) const override;
-    char getTipo() const override;
+    double calcularDescuento(int cantTotal, double montoTotal);
+    char getTipo();
 };
 
 #endif

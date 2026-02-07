@@ -1,58 +1,61 @@
-#include "Cliente.h"
-#include "DescuentoA.h"
-#include "DescuentoB.h"
-#include "DescuentoC.h"
+#include "cliente.h"
+#include "descuentoa.h"
+#include "descuentob.h"
+#include "descuentoc.h"
 #include <cstring>
 
-// Constructor: crea el cliente con la estrategia correspondiente
-Cliente::Cliente(int n, const char* nom, char tipo) {
+using namespace std;
+
+Cliente::Cliente() {
+    nro = 0;
+    strcpy(nombre, "");
+    estrategiaDescuento = nullptr;
+}
+
+// Ejercicio 1: Constructor con estrategia según tipo
+Cliente::Cliente(int n, char* nom, char tipo) {
     nro = n;
     strcpy(nombre, nom);
 
-    // Asigna la estrategia según el tipo
-    if (tipo == 'A') {
+    if(tipo == 'A') {
         estrategiaDescuento = new DescuentoA();
-    } else if (tipo == 'B') {
+    } else if(tipo == 'B') {
         estrategiaDescuento = new DescuentoB();
-    } else if (tipo == 'C') {
-        estrategiaDescuento = new DescuentoC();
-    } else {
-        estrategiaDescuento = nullptr;  // Tipo inválido
-    }
-}
-
-// Destructor: libera la estrategia
-Cliente::~Cliente() {
-    delete estrategiaDescuento;
-}
-
-// MÉTODO CLAVE: permite cambiar el tipo de cliente sin destruir el objeto
-void Cliente::cambiarTipo(char nuevoTipo) {
-    // Elimina la estrategia actual
-    delete estrategiaDescuento;
-
-    // Asigna la nueva estrategia
-    if (nuevoTipo == 'A') {
-        estrategiaDescuento = new DescuentoA();
-    } else if (nuevoTipo == 'B') {
-        estrategiaDescuento = new DescuentoB();
-    } else if (nuevoTipo == 'C') {
+    } else if(tipo == 'C') {
         estrategiaDescuento = new DescuentoC();
     } else {
         estrategiaDescuento = nullptr;
     }
 }
 
-// Delega el cálculo del descuento a la estrategia
-double Cliente::calcularDescuento(int cantTotal, double montoTotal) const {
-    if (estrategiaDescuento == nullptr) {
+Cliente::~Cliente() {
+    delete estrategiaDescuento;
+}
+
+// Permite cambiar el tipo de cliente sin destruir el objeto
+void Cliente::cambiarTipo(char nuevoTipo) {
+    delete estrategiaDescuento;
+
+    if(nuevoTipo == 'A') {
+        estrategiaDescuento = new DescuentoA();
+    } else if(nuevoTipo == 'B') {
+        estrategiaDescuento = new DescuentoB();
+    } else if(nuevoTipo == 'C') {
+        estrategiaDescuento = new DescuentoC();
+    } else {
+        estrategiaDescuento = nullptr;
+    }
+}
+
+// Ejercicio 2: Delega el cálculo del descuento a la estrategia
+double Cliente::calcularDescuento(int cantTotal, double montoTotal) {
+    if(estrategiaDescuento == nullptr) {
         return 0;
     }
     return estrategiaDescuento->calcularDescuento(cantTotal, montoTotal);
 }
 
-// Getters
-int Cliente::getNro() const {
+int Cliente::getNro() {
     return nro;
 }
 
@@ -60,18 +63,17 @@ char* Cliente::getNombre() {
     return nombre;
 }
 
-char Cliente::getTipo() const {
-    if (estrategiaDescuento == nullptr) {
-        return '\0';  // Tipo desconocido
+char Cliente::getTipo() {
+    if(estrategiaDescuento == nullptr) {
+        return '\0';
     }
     return estrategiaDescuento->getTipo();
 }
 
-// Setters
 void Cliente::setNro(int n) {
     nro = n;
 }
 
-void Cliente::setNombre(const char* nom) {
+void Cliente::setNombre(char* nom) {
     strcpy(nombre, nom);
 }

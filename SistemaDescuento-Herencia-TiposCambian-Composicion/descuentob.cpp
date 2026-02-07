@@ -1,24 +1,24 @@
-#include "DescuentoB.h"
+#include "descuentob.h"
+
+using namespace std;
 
 DescuentoB::DescuentoB() {
-    // Constructor vacío
 }
 
 DescuentoB::~DescuentoB() {
-    // Destructor vacío
 }
 
-double DescuentoB::calcularDescuento(int cantTotal, double montoTotal) const {
-    // Tipo B solo considera el monto, ignora la cantidad
-    if (montoTotal > 20000) {
+// Ejercicio 1: Tipo B solo descuento por monto
+double DescuentoB::calcularDescuento(int cantTotal, double montoTotal) {
+    if(montoTotal > 20000) {
         return 25;
     }
-    if (montoTotal > 10000) {
+    if(montoTotal > 10000) {
         return 20;
     }
     return 0;
 }
 
-char DescuentoB::getTipo() const {
+char DescuentoB::getTipo() {
     return 'B';
 }

@@ -1,35 +1,34 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "Descuento.h"
+#include "descuento.h"
+using namespace std;
 
-// CLASE PRINCIPAL CON COMPOSICIÓN
-// Ahora Cliente NO es una clase abstracta, es una clase concreta
-// que TIENE una estrategia de descuento
+// ========== EJERCICIO 1: Clase Cliente con Composición (Estrategia) ==========
+
 class Cliente {
 private:
     int nro;
     char nombre[200];
-    Descuento* estrategiaDescuento;  // COMPOSICIÓN - puntero a estrategia
+    Descuento* estrategiaDescuento;
 
 public:
-    Cliente(int n, const char* nom, char tipo);
+    Cliente();
+    Cliente(int n, char* nom, char tipo);
     ~Cliente();
 
-    // MÉTODO CLAVE: permite cambiar el tipo de cliente
+    // Permite cambiar el tipo de cliente en tiempo de ejecución
     void cambiarTipo(char nuevoTipo);
 
     // Delega el cálculo a la estrategia
-    double calcularDescuento(int cantTotal, double montoTotal) const;
+    double calcularDescuento(int cantTotal, double montoTotal);
 
-    // Getters
-    int getNro() const;
+    int getNro();
     char* getNombre();
-    char getTipo() const;
+    char getTipo();
 
-    // Setters
     void setNro(int n);
-    void setNombre(const char* nom);
+    void setNombre(char* nom);
 };
 
 #endif

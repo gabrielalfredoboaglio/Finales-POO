@@ -1,30 +1,30 @@
-#include "DescuentoC.h"
-#include <algorithm>  // Para std::max
+#include "descuentoc.h"
+#include <algorithm>
+
+using namespace std;
 
 DescuentoC::DescuentoC() {
-    // Constructor vacío
 }
 
 DescuentoC::~DescuentoC() {
-    // Destructor vacío
 }
 
-double DescuentoC::calcularDescuento(int cantTotal, double montoTotal) const {
+// Libre: Tipo C retorna el mayor de los dos descuentos
+double DescuentoC::calcularDescuento(int cantTotal, double montoTotal) {
     // Descuento por cantidad
     double descCantidad = (cantTotal / 100) * 1.0;
 
     // Descuento por monto
     double descMonto = 0;
-    if (montoTotal > 20000) {
+    if(montoTotal > 20000) {
         descMonto = 25;
-    } else if (montoTotal > 10000) {
+    } else if(montoTotal > 10000) {
         descMonto = 20;
     }
 
-    // Tipo C retorna el MAYOR de los dos
-    return std::max(descCantidad, descMonto);
+    return max(descCantidad, descMonto);
 }
 
-char DescuentoC::getTipo() const {
+char DescuentoC::getTipo() {
     return 'C';
 }

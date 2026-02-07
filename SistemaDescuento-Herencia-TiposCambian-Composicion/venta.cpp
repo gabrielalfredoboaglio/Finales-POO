@@ -1,5 +1,7 @@
 #include "venta.h"
 
+using namespace std;
+
 Venta::Venta() {
     nro_cliente = 0;
     cantidad = 0;

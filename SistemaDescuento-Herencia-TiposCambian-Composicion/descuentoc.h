@@ -1,17 +1,18 @@
 #ifndef DESCUENTOC_H
 #define DESCUENTOC_H
 
-#include "Descuento.h"
+#include "descuento.h"
+using namespace std;
 
-// ESTRATEGIA CONCRETA TIPO C
-// Calcula ambos descuentos y retorna el MAYOR
+// ========== LIBRE: Tipo C - Obtiene el mayor de los dos descuentos ==========
+
 class DescuentoC : public Descuento {
 public:
     DescuentoC();
     ~DescuentoC();
 
-    double calcularDescuento(int cantTotal, double montoTotal) const override;
-    char getTipo() const override;
+    double calcularDescuento(int cantTotal, double montoTotal);
+    char getTipo();
 };
 
 #endif
