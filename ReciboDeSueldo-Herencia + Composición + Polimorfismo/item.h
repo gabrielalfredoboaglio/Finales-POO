@@ -2,12 +2,15 @@
 #define ITEM_H
 
 #include "empleado.h"
-class Item
-{
+using namespace std;
 
+// Ejercicio 1: Clase abstracta Item (polimorfismo)
+class Item {
 public:
     Item();
-    virtual double calcular(Empleado& empleado)  = 0;
+    virtual ~Item();
+    virtual double calcular(Empleado& empleado) = 0;
+    virtual char* getNombreItem() = 0;
 };
 
-#endif // ITEM_H
+#endif

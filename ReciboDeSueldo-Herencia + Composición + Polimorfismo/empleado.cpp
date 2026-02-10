@@ -1,61 +1,26 @@
 #include "empleado.h"
 #include <cstring>
 
-
+using namespace std;
 
 Empleado::Empleado() {
-    sueldoNeto = 0;
+    id = 0;
     strcpy(nombre, "");
+    sueldoNeto = 0;
     aniosAntiguedad = 0;
     empleadosACargo = 0;
 }
 
-int Empleado::getMonto()
-{
-    return monto;
-}
+Empleado::~Empleado() {}
 
-char *Empleado::getNombre()
-{
-    return nombre;
-}
+int Empleado::getId() { return id; }
+char* Empleado::getNombre() { return nombre; }
+double Empleado::getSueldoNeto() { return sueldoNeto; }
+int Empleado::getAniosAntiguedad() { return aniosAntiguedad; }
+int Empleado::getEmpleadosACargo() { return empleadosACargo; }
 
-double Empleado::getSueldoNeto()
-{
-    return sueldoNeto;
-}
-
-int Empleado::getAniosAntiguedad()
-{
-    return aniosAntiguedad;
-}
-
-int Empleado::getEmpleadosACargo()
-{
-    return empleadosACargo;
-}
-
-void Empleado::setMonto(int m)
-{
-    this -> monto = m;
-}
-
-void Empleado::setNombre(char *nom)
-{
-    strcpy(nombre, nom);
-}
-
-void Empleado::setAniosAntiguedad(int a)
-{
-    this->aniosAntiguedad = a;
-}
-void Empleado::setSueldoNeto(double n)
-{
-    this ->sueldoNeto = n;
-}
-
-void Empleado::setEmpleadosACargo(int e)
-{
-    this->empleadosACargo =e;
-}
-
+void Empleado::setId(int i) { id = i; }
+void Empleado::setNombre(char* nom) { strcpy(nombre, nom); }
+void Empleado::setSueldoNeto(double n) { sueldoNeto = n; }
+void Empleado::setAniosAntiguedad(int a) { aniosAntiguedad = a; }
+void Empleado::setEmpleadosACargo(int e) { empleadosACargo = e; }

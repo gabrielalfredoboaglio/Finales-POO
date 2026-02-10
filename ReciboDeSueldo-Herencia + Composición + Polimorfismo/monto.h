@@ -2,14 +2,14 @@
 #define MONTO_H
 
 #include "item.h"
+using namespace std;
 
-
-class Monto: public Item
-{
+// Ejercicio 1: Item Monto = sueldo neto
+class Monto : public Item {
 public:
     Monto();
-
-    double calcular(Empleado &empleado);
+    double calcular(Empleado& empleado);
+    char* getNombreItem();
 };
 
-#endif // MONTO_H
+#endif

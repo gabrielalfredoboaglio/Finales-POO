@@ -2,13 +2,14 @@
 #define EMPLEADOACARGO_H
 
 #include "item.h"
+using namespace std;
 
-
-class EmpleadoACargo : public Item
-{
+// Ejercicio 1: Item EmpleadoACargo = 1000 * cantidad
+class EmpleadoACargo : public Item {
 public:
     EmpleadoACargo();
-    double calcular(Empleado &empleado);
+    double calcular(Empleado& empleado);
+    char* getNombreItem();
 };
 
-#endif // EMPLEADOACARGO_H
+#endif
