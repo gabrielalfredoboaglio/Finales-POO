@@ -1,3 +1,4 @@
+// ========== LIBRE: Implementación MuchaTarea ==========
 #include "muchatarea.h"
 #include <iostream>
 

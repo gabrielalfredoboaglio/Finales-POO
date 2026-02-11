@@ -30,7 +30,7 @@ public:
     void agregarPermiso(const string& permiso);
     virtual bool tienePermiso(const string& permiso) const;
 
-    // Para identificar el tipo de cargo
+    // Libre: Para identificar el tipo de cargo (necesario para CargoExtendido)
     virtual char getTipo() const;
 };
 

@@ -1,3 +1,4 @@
+// ========== LIBRE: Clase CargoExtendido (cargo que extiende de otro) ==========
 #ifndef CARGOEXTENDIDO_H
 #define CARGOEXTENDIDO_H
 

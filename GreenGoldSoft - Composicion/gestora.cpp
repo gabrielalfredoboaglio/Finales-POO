@@ -84,7 +84,7 @@ void Gestora::guardarArchivos(char* archCursos,
 
     archiCorr.close();
 
-    // ========== ARCHIVO 3: CURSOS_COMPUESTOS ==========
+    // ========== LIBRE: ARCHIVO 3: CURSOS_COMPUESTOS ==========
     ofstream archiCC(archCursosCompuestos, ios::binary);
 
     if(!archiCC.is_open()) {
@@ -126,6 +126,7 @@ void Gestora::leerArchivos(char* archCursos,
         while(archiC.read((char*)&caux, sizeof(CursoArchivo))) {
             Curso* curso;
 
+            // ========== LIBRE: Crear CursoCompuesto si tipo 'C' ==========
             if(caux.tipo == 'C') {
                 curso = new CursoCompuesto(caux.codigo, caux.titulo, caux.tiempoHoras);
             } else {
@@ -156,7 +157,7 @@ void Gestora::leerArchivos(char* archCursos,
         archiCorr.close();
     }
 
-    // ========== LEER CURSOS_COMPUESTOS ==========
+    // ========== LIBRE: LEER CURSOS_COMPUESTOS ==========
     ifstream archiCC(archCursosCompuestos, ios::binary);
 
     if(archiCC.is_open()) {
@@ -187,6 +188,7 @@ void Gestora::mostrarYGuardarEnTexto(char* archivoTexto) {
     }
 
     for(Curso* curso : cursos) {
+        // Libre: Si es compuesto, usar operator<< de CursoCompuesto
         if(curso->getTipo() == 'C') {
             CursoCompuesto* cc = dynamic_cast<CursoCompuesto*>(curso);
             archivo << *cc;

@@ -6,6 +6,7 @@
 #include <map>        // map
 #include <string>     // string
 #include <iterator>   // back_inserter
+// Libre: include de EmpleadoMuchasVentas
 #include "EmpleadoMuchasVentas.h"
 using namespace std;
 
@@ -38,7 +39,8 @@ void Gestora::leerArchivos() {
         case 'J':
             emp = new Jefe();
             break;
-        case 'M':  // ← AGREGAR ESTE CASO
+        // ========== LIBRE: Nuevo tipo EmpleadoMuchasVentas ==========
+        case 'M':
             emp = new empleadoMuchasVentas();
             break;
         default:
@@ -78,7 +80,7 @@ void Gestora::leerArchivos() {
     archiJefes.close();
 
 
-    // ========== LEER VENTAS.DAT (NUEVO) ==========
+    // ========== LIBRE: LEER VENTAS.DAT ==========
     ifstream archiVentas("ventas.dat", ios::binary);
     VentaEmpleadoArchivo vaux;
 

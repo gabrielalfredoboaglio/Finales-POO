@@ -63,7 +63,7 @@ void Gestora::guardarArchivos(const char* archCargos,
         strcpy(caux.nombre, c->getNombre());
         caux.tipo = c->getTipo();
 
-        // Si es CargoExtendido, guardar id del cargo base
+        // ========== LIBRE: Guardar id del cargo base si es extendido ==========
         if(c->getTipo() == 'E') {
             CargoExtendido* ce = dynamic_cast<CargoExtendido*>(c);
             caux.id_cargo_base = ce->getIdCargoBase();
@@ -90,8 +90,8 @@ void Gestora::guardarArchivos(const char* archCargos,
         // Para cargos extendidos, solo guardamos los permisos ADICIONALES
         vector<string> permisosAGuardar;
 
+        // ========== LIBRE: Separar permisos propios de extendidos ==========
         if(c->getTipo() == 'E') {
-            // CargoExtendido: solo guardar permisos adicionales (no los del base)
             CargoExtendido* ce = dynamic_cast<CargoExtendido*>(c);
             vector<string> todos = ce->getPermisos();
             vector<string> base;
@@ -100,7 +100,6 @@ void Gestora::guardarArchivos(const char* archCargos,
                 base = ce->getCargoBase()->getPermisos();
             }
 
-            // Obtener solo los adicionales (los que NO están en base)
             for(const string& p : todos) {
                 if(find(base.begin(), base.end(), p) == base.end()) {
                     permisosAGuardar.push_back(p);
@@ -161,8 +160,8 @@ void Gestora::leerArchivos(const char* archCargos,
     while(archiC.read((char*)&caux, sizeof(CargoArchivo))) {
         Cargo* cargo;
 
+        // ========== LIBRE: Crear CargoExtendido si tipo es 'E' ==========
         if(caux.tipo == 'E') {
-            // CargoExtendido - por ahora crear sin base, la asignamos después
             cargo = new CargoExtendido(caux.id, caux.nombre, nullptr);
         } else {
             cargo = new Cargo(caux.id, caux.nombre);
@@ -173,7 +172,7 @@ void Gestora::leerArchivos(const char* archCargos,
 
     archiC.close();
 
-    // Ahora establecer las relaciones de cargo_base
+    // ========== LIBRE: Establecer relaciones de cargo_base ==========
     archiC.open(archCargos, ios::binary);
 
     while(archiC.read((char*)&caux, sizeof(CargoArchivo))) {

@@ -11,3 +11,8 @@ double Monto::calcular(Empleado& empleado) {
 char* Monto::getNombreItem() {
     return (char*)"Monto";
 }
+
+// ========== agregar para punto libre ==========
+char Monto::getTipo() {
+    return 'M';
+}

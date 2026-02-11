@@ -76,6 +76,7 @@ bool Gestora::mkdir(string nombre) {
     return true;
 }
 
+// Libre: touch con peso
 bool Gestora::touch(string nombre, int peso) {
     if(carpetaActual->existeElemento(nombre)) {
         return false; // Ya existe un elemento con ese nombre
@@ -137,7 +138,7 @@ void Gestora::ls() {
             cout << "[DIR] " << elem->getNombre() << endl;
         } else {
             Archivo* arch = dynamic_cast<Archivo*>(elem);
-            cout << "[FILE] " << elem->getNombre() << " (" << arch->getPeso() << " bytes)" << endl;
+            cout << "[FILE] " << elem->getNombre() << " (" << arch->getPeso() << " bytes)" << endl;  // Libre: mostrar peso
         }
     }
 }
@@ -162,10 +163,10 @@ void Gestora::lsp() {
     for(Nodo* elem : elementos) {
         if(elem->getTipo() == 'C') {
             Carpeta* carp = dynamic_cast<Carpeta*>(elem);
-            archivo << "[DIR] " << elem->getNombre() << " (Peso: " << carp->obtenerPeso() << " bytes)" << endl;
+            archivo << "[DIR] " << elem->getNombre() << " (Peso: " << carp->obtenerPeso() << " bytes)" << endl;  // Libre: peso de carpeta
         } else {
             Archivo* arch = dynamic_cast<Archivo*>(elem);
-            archivo << "[FILE] " << elem->getNombre() << " (Peso: " << arch->getPeso() << " bytes)" << endl;
+            archivo << "[FILE] " << elem->getNombre() << " (Peso: " << arch->getPeso() << " bytes)" << endl;  // Libre: peso de archivo
         }
     }
     

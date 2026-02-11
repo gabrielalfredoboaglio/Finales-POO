@@ -15,7 +15,7 @@ int main()
     // Ejercicio 2: Calcular descuento para una nueva venta
     gestora.calcularDescuentoNuevaVenta(1, 50, 5000.0);
 
-    // Libre: Cambiar tipo de cliente
+    // ========== agregar para punto libre ==========
     gestora.cambiarTipoCliente(1, 'C');
 
     // Ejercicio 4a: Clientes que compraron la mayor cantidad de items

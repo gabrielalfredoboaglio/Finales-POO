@@ -22,14 +22,14 @@ struct DependenciaArchivo {
     char codigoPaqueteDependencia[100];
 };
 
-// Libre: Archivo: conjuntos.dat
+// ========== agregar para punto libre ==========
 struct ConjuntoArchivo {
     char codigo[100];
     char nombre[100];
     int version;
 };
 
-// Libre: Archivo: conjuntos_paquetes.dat
+// ========== agregar para punto libre ==========
 struct ConjuntoPaqueteArchivo {
     char codigoConjunto[100];
     char codigoPaquete[100];
@@ -40,11 +40,11 @@ struct ConjuntoPaqueteArchivo {
 class Gestora {
 private:
     vector<Paquete*> paquetes;
-    vector<ConjuntoPaquetes*> conjuntos;
+    vector<ConjuntoPaquetes*> conjuntos; // ========== agregar para punto libre ==========
 
     // Métodos auxiliares privados
     Paquete* buscarPaquete(char* codigo);
-    ConjuntoPaquetes* buscarConjunto(char* codigo);
+    ConjuntoPaquetes* buscarConjunto(char* codigo); // ========== agregar para punto libre ==========
 
 public:
     Gestora();
@@ -52,7 +52,7 @@ public:
 
     // Métodos para agregar elementos
     void agregarPaquete(Paquete* paquete);
-    void agregarConjunto(ConjuntoPaquetes* conjunto);
+    void agregarConjunto(ConjuntoPaquetes* conjunto); // ========== agregar para punto libre ==========
 
     // Guardar en archivos binarios
     void guardarArchivos(char* archPaquetes, char* archDependencias);
@@ -70,14 +70,14 @@ public:
     vector<Paquete*> obtenerTop5PaquetesConMasDependencias();
     vector<Paquete*> obtenerPaquetesSinDependencias();
 
-    // Libre: Guardar/Leer archivos de conjuntos
+    // ========== agregar para punto libre ==========
     void guardarArchivosConjuntos(char* archConjuntos, char* archConjuntosPaquetes);
     void leerArchivosConjuntos(char* archConjuntos, char* archConjuntosPaquetes);
     vector<Paquete*> instalarConjunto(char* codigoConjunto);
 
     // Getters
     vector<Paquete*> getPaquetes();
-    vector<ConjuntoPaquetes*> getConjuntos();
+    vector<ConjuntoPaquetes*> getConjuntos(); // ========== agregar para punto libre ==========
 };
 
 #endif // GESTORA_H

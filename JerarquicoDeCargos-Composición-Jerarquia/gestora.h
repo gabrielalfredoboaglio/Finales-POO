@@ -13,7 +13,7 @@ struct EmpleadoArchivo {
     int cantidad_a_cargo;
 };
 
-// ========== STRUCT PARA JERARQUÍA BINARIA (PUNTO LIBRE) ==========
+// ========== LIBRE: Struct para guardar jerarquía en binario ==========
 struct JerarquiaArchivo {
     int numero_jefe;
     int numero_subordinado;
@@ -29,7 +29,7 @@ private:
     int contarGuiones(const string& linea);
     void parsearLinea(const string& linea, int& numero, string& nombre);
 
-    // Para guardar jerarquía binaria (punto libre)
+    // ========== LIBRE: Auxiliar para guardar jerarquía binaria ==========
     void guardarJerarquiaRecursiva(ofstream& archiJerarquia, Empleado* emp);
 
 public:
@@ -51,7 +51,7 @@ public:
     // Punto 5.2: Empleados con número repetido
     vector<int> obtenerNumerosRepetidos();
 
-    // Punto Libre: Guardar jerarquía en archivos binarios
+    // ========== LIBRE: Guardar jerarquía en archivos binarios ==========
     void guardarJerarquiaBinaria(const char* nombreArchivoEmpleados,
                                  const char* nombreArchivoJerarquia);
 

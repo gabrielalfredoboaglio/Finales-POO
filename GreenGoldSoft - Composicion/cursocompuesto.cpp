@@ -1,3 +1,4 @@
+// ========== LIBRE: Implementación CursoCompuesto ==========
 #include "cursocompuesto.h"
 #include <set>
 

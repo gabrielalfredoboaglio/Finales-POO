@@ -184,7 +184,7 @@ vector<int> Gestora::obtenerNumerosRepetidos() {
     return numerosRepetidos;
 }
 
-// ========== PUNTO LIBRE: GUARDAR JERARQUÍA EN BINARIOS ==========
+// ========== LIBRE: GUARDAR JERARQUÍA EN BINARIOS ==========
 
 void Gestora::guardarJerarquiaBinaria(const char* nombreArchivoEmpleados,
                                       const char* nombreArchivoJerarquia) {

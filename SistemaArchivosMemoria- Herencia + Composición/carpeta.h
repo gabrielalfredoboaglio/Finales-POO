@@ -24,6 +24,7 @@ public:
     bool existeElemento(string nombre);
     
     char getTipo();
+    // ========== LIBRE: Peso de carpeta = suma de hijos ==========
     int obtenerPeso();
     
     void ordenarPorNombre();

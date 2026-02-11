@@ -4,11 +4,13 @@
 using namespace std;
 
 Comentario::Comentario() {
+    id = 0;
     strcpy(texto, "");
     puntaje = 0;
 }
 
 Comentario::Comentario(char* txt, int punt) {
+    id = 0;
     strcpy(texto, txt);
     puntaje = punt;
 }
@@ -87,4 +89,32 @@ void Comentario::obtenerTodosComentarios(vector<Comentario*>& resultado) {
     for(Comentario* hijo : comentariosHijos) {
         hijo->obtenerTodosComentarios(resultado);
     }
+}
+
+// ========== agregar para punto libre ==========
+int Comentario::getId() { return id; }
+void Comentario::setId(int i) { id = i; }
+
+void Comentario::agregarPadre(Comentario* padre) {
+    comentariosPadres.push_back(padre);
+    // También agregar como hijo del padre si no lo tiene
+    vector<Comentario*> hijos = padre->getComentariosHijos();
+    bool yaEsHijo = false;
+    for(Comentario* h : hijos) {
+        if(h->getId() == this->id) {
+            yaEsHijo = true;
+            break;
+        }
+    }
+    if(!yaEsHijo) {
+        padre->agregarComentarioHijo(this);
+    }
+}
+
+vector<Comentario*> Comentario::getPadres() {
+    return comentariosPadres;
+}
+
+int Comentario::getCantidadPadres() {
+    return comentariosPadres.size();
 }

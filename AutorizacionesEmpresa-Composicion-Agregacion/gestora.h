@@ -3,6 +3,7 @@
 
 #include "Usuario.h"
 #include "Cargo.h"
+// Libre: include de CargoExtendido
 #include "CargoExtendido.h"
 #include <vector>
 #include <string>
@@ -14,8 +15,8 @@ using namespace std;
 struct CargoArchivo {
     int id;
     char nombre[200];
-    char tipo;  // 'N' = Normal, 'E' = Extendido
-    int id_cargo_base;  // Solo para CargoExtendido, -1 si es Normal
+    char tipo;  // Libre: 'N' = Normal, 'E' = Extendido
+    int id_cargo_base;  // Libre: Solo para CargoExtendido, -1 si es Normal
 };
 
 // Archivo: permisos_cargo.dat

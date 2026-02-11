@@ -1,3 +1,4 @@
+// ========== agregar para punto libre (ARCHIVO ENTERO) ==========
 #include "conjuntopaquetes.h"
 #include <cstring>
 
@@ -54,7 +55,7 @@ void ConjuntoPaquetes::agregarPaquete(Paquete* paquete) {
     paquetes.push_back(paquete);
 }
 
-// ========== LIBRE: Instalar todos los paquetes dependientes del conjunto ==========
+// ========== agregar para punto libre ==========
 
 vector<Paquete*> ConjuntoPaquetes::instalarDependientes() {
     vector<Paquete*> todosLosPaquetes;

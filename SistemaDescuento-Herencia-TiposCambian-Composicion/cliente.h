@@ -17,7 +17,7 @@ public:
     Cliente(int n, char* nom, char tipo);
     ~Cliente();
 
-    // Permite cambiar el tipo de cliente en tiempo de ejecución
+    // ========== agregar para punto libre ==========
     void cambiarTipo(char nuevoTipo);
 
     // Delega el cálculo a la estrategia

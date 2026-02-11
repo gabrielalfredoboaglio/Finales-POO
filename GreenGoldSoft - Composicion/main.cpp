@@ -9,12 +9,12 @@ int main()
     // Cargar datos desde archivos binarios
     gestora.leerArchivos("cursos.dat",
                          "correlativas.dat",
-                         "cursos_compuestos.dat");
+                         "cursos_compuestos.dat");   // Libre: tercer archivo
 
     // Guardar datos en archivos binarios
     gestora.guardarArchivos("cursos.dat",
                             "correlativas.dat",
-                            "cursos_compuestos.dat");
+                            "cursos_compuestos.dat");   // Libre: tercer archivo
 
     // Mostrar y guardar en archivo de texto
     gestora.mostrarYGuardarEnTexto("cursos.txt");

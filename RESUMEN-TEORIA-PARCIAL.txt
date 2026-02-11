@@ -1,0 +1,349 @@
+================================================================================
+            RESUMEN TEORICO - POO C++ (Final)
+================================================================================
+
+TODAS las preguntas que aparecen en los parciales
+
+
+================================================================================
+1. Se puede utilizar polimorfismo? Cual es la ventaja o desventaja?
+================================================================================
+Aparece en: Bonos, Tareas, Recibo de Sueldo, Jerarquico de Cargos
+
+SI, se puede utilizar polimorfismo. Se implementa usando herencia con metodos
+virtuales (virtual) en la clase base y sobreescribiendolos en las clases
+derivadas.
+
+Ventajas:
+  1. Elimina condicionales: En lugar de usar if/else o switch para determinar
+     el tipo, cada clase sabe como ejecutar su propia logica.
+  2. Extensibilidad: Para agregar un nuevo tipo, solo se crea una nueva clase
+     derivada sin modificar el codigo existente (Principio Abierto/Cerrado).
+  3. Codigo generico: Se puede escribir codigo que funcione con la clase base
+     y automaticamente funcione con cualquier clase derivada.
+  4. Mantenibilidad: El codigo es mas limpio, organizado y facil de mantener.
+
+Desventajas:
+  1. Overhead de vtable: Los metodos virtuales tienen un costo adicional en
+     memoria (tabla de funciones virtuales) y en tiempo de ejecucion
+     (indireccion).
+  2. Complejidad: Puede ser excesivo para problemas simples con pocos tipos.
+  3. Acoplamiento: La herencia genera acoplamiento entre clase base y derivadas.
+
+Ejemplo:
+
+  // SIN polimorfismo (malo):
+  if(emp->getTipo() == 'V') {
+      bono = emp->getVentas() * emp->getPorcentaje();
+  } else if(emp->getTipo() == 'J') {
+      // otra logica...
+  }
+
+  // CON polimorfismo (bueno):
+  bono = emp->calcularBono();  // Cada tipo sabe como calcular
+
+
+================================================================================
+2. Por que son necesarias las clases abstractas? Cuando las utilizaria?
+   Ventajas y desventajas? Relacion con polimorfismo?
+================================================================================
+Aparece en: EmpresaProductos, GreenGoldSoft
+
+Por que son necesarias?
+  Permiten definir una interfaz comun (contrato) para un conjunto de clases
+  relacionadas, garantizando que todas las derivadas implementen los metodos
+  esenciales. No se pueden instanciar directamente.
+
+Cuando las utilizaria?
+  1. Cuando hay un concepto comun pero con implementaciones diferentes
+     (ej: Empleado con Vendedor y Jefe, cada uno calcula bono distinto).
+  2. Cuando se necesita garantizar que las derivadas implementen ciertos
+     metodos.
+  3. Cuando se necesita polimorfismo puro (trabajar con punteros a la base).
+
+Ventajas:
+  1. Consistencia: Garantiza que todas las derivadas implementen los metodos
+     necesarios.
+  2. Flexibilidad: Se agregan nuevos tipos sin modificar codigo existente.
+  3. Polimorfismo: Permite tratar objetos de diferentes tipos de manera
+     uniforme.
+  4. Reutilizacion: Codigo comun en la base, comportamiento especifico en
+     las derivadas.
+
+Desventajas:
+  1. Complejidad: Aumenta la complejidad del diseno.
+  2. Rigidez: Modificar la interfaz abstracta afecta TODAS las derivadas.
+  3. Sobrecarga de diseno: Puede ser innecesario para problemas simples.
+
+Relacion con polimorfismo:
+  Las clases abstractas HABILITAN el polimorfismo. Definen metodos virtuales
+  puros (= 0) que cada derivada implementa. Usando punteros a la clase base,
+  el sistema elige automaticamente la implementacion correcta en tiempo de
+  ejecucion (enlace dinamico / dynamic binding).
+
+  class Animal {
+  public:
+      virtual void hacerSonido() = 0;  // Metodo puro virtual
+  };
+
+  Animal* animales[] = {new Perro(), new Gato()};
+  for(Animal* a : animales) {
+      a->hacerSonido();  // Cada uno hace su sonido (enlace dinamico)
+  }
+
+
+================================================================================
+3. Por que son necesarios los templates en lenguajes de tipado estatico?
+================================================================================
+Aparece en: Autorizaciones, Tareas
+
+Los templates son necesarios en C++ porque es un lenguaje de tipado estatico,
+es decir, los tipos se definen en TIEMPO DE COMPILACION y no pueden cambiar
+en tiempo de ejecucion.
+
+Sin templates, si queremos una estructura (ej: un vector) que funcione con
+diferentes tipos, tendriamos que escribir una clase para cada tipo:
+
+  class VectorInt { ... };
+  class VectorString { ... };
+  class VectorDouble { ... };
+  // Duplicacion de codigo!
+
+Con templates, escribimos la estructura UNA SOLA VEZ y funciona con cualquier
+tipo:
+
+  template<class T>
+  class Vector {
+      T* datos;
+      void agregar(T elemento) { ... }
+  };
+
+  Vector<int> vi;
+  Vector<string> vs;
+  Vector<Empleado*> ve;
+
+Beneficios:
+  1. Reutilizacion de codigo: Una sola implementacion para todos los tipos.
+  2. Seguridad de tipos: El compilador verifica los tipos en compilacion,
+     evitando errores en ejecucion.
+  3. Rendimiento: No hay overhead en tiempo de ejecucion (se genera codigo
+     especifico para cada tipo).
+  4. Flexibilidad: Funciona con tipos primitivos y con objetos propios.
+
+
+================================================================================
+4. Por que C++ utiliza punteros para implementar el polimorfismo?
+================================================================================
+Aparece en: Autorizaciones, Tareas
+
+C++ utiliza punteros (o referencias) para implementar el polimorfismo por las
+siguientes razones:
+
+  1. Enlace dinamico (dynamic binding): Los punteros permiten que el tipo real
+     del objeto se determine en TIEMPO DE EJECUCION. Sin punteros, el
+     compilador usa el tipo declarado (enlace estatico) y llama al metodo de
+     la clase base, no al de la derivada.
+
+  2. Tabla de funciones virtuales (vtable): Cuando se usa un puntero a la
+     clase base, C++ consulta la vtable del objeto para encontrar la
+     implementacion correcta del metodo virtual. Esto solo funciona con
+     punteros o referencias.
+
+  3. Evitar object slicing: Sin punteros, al asignar un objeto derivado a
+     una variable de tipo base, se "recorta" el objeto perdiendo la parte
+     derivada:
+
+     // MAL - object slicing (se pierde la parte de Vendedor):
+     Empleado emp = vendedor;  // Copia solo la parte de Empleado
+
+     // BIEN - polimorfismo con punteros:
+     Empleado* emp = new Vendedor();  // Mantiene el objeto completo
+     emp->calcularBono();  // Llama al metodo de Vendedor
+
+  4. Memoria dinamica: Los punteros permiten crear objetos en el heap con
+     new, necesario para manejar colecciones polimorficas
+     (vector<Empleado*>).
+
+
+================================================================================
+5. Cuando es necesario utilizar composicion? Como ayuda a reutilizar codigo?
+   El polimorfismo simplifica el diseno, como?
+================================================================================
+Aparece en: SistemaDependencias
+
+Composicion - Cuando es necesaria?
+  Se usa cuando existe una relacion "tiene-un" (has-a) entre clases, es decir,
+  una clase CONTIENE a otra como parte de su estructura.
+
+  Casos:
+    1. Cuando una entidad contiene a otras (ej: un ConjuntoPaquetes TIENE
+       varios Paquete).
+    2. Cuando se quiere reutilizar funcionalidad sin herencia.
+    3. Cuando los componentes pueden existir independientemente.
+
+Como ayuda a reutilizar codigo?
+  La composicion permite que una clase DELEGUE RESPONSABILIDADES a las clases
+  que contiene:
+  - ConjuntoPaquetes reutiliza obtenerTodasDependencias() de Paquete sin
+    reimplementar la logica recursiva.
+  - Si cambia la logica en Paquete, se actualiza automaticamente en
+    ConjuntoPaquetes.
+
+El polimorfismo simplifica el diseno, como?
+  1. Elimina condicionales: Cada clase implementa su propia version del
+     metodo virtual.
+  2. Extensibilidad: Agregar un nuevo tipo = crear una nueva clase derivada,
+     sin modificar codigo existente.
+  3. Codigo generico: Se escribe codigo contra la clase base y funciona con
+     cualquier derivada.
+
+
+================================================================================
+6. Diferencias entre archivo binario y texto
+================================================================================
+Aparece en: SistemaArchivos
+
+  Aspecto         | Archivo de Texto                  | Archivo Binario
+  ----------------|-----------------------------------|---------------------------
+  Legibilidad     | Legible por humanos               | No legible directamente
+  Tamano          | Mas grande (12345 = 5 bytes)      | Mas compacto (12345 = 4 bytes)
+  Velocidad       | Mas lento (conversion texto-num)  | Mas rapido (lectura directa)
+  Precision       | Puede perder precision decimales  | Mantiene precision exacta
+  Edicion         | Facil con editor de texto         | Requiere herramientas
+  Estructura      | Secuencial, linea por linea       | Estructura compleja (structs)
+  Uso             | Config, logs, codigo fuente       | Datos, imagenes, serializ.
+
+Ejemplo:
+
+  // Texto: escribe "12345" como caracteres (5 bytes)
+  ofstream texto("datos.txt");
+  texto << 12345 << endl;
+
+  // Binario: escribe 4 bytes directamente
+  ofstream binario("datos.dat", ios::binary);
+  int valor = 12345;
+  binario.write((char*)&valor, sizeof(int));
+
+
+================================================================================
+7. La herencia genera acoplamiento? Justifique
+================================================================================
+Aparece en: SistemaArchivos
+
+SI, la herencia genera acoplamiento, y es de los mas fuertes en POO.
+
+Por que?
+  1. Dependencia estructural: La derivada depende de la estructura interna de
+     la base. Cambios en la base afectan a TODAS las derivadas.
+  2. Acceso a protected: Las derivadas acceden a miembros protected, creando
+     dependencia con la implementacion interna.
+  3. Cambios en cascada: Modificar la base puede requerir modificar todas
+     las derivadas.
+
+Comparacion:
+  - Composicion -> acoplamiento DEBIL (solo depende de la interfaz publica)
+  - Herencia    -> acoplamiento FUERTE (depende de estructura e implementacion)
+
+Como reducirlo:
+  1. Favorecer composicion sobre herencia cuando sea posible.
+  2. Usar clases abstractas/interfaces en lugar de herencia concreta.
+  3. Limitar el acceso a miembros protected.
+
+
+================================================================================
+8. Que ventajas tiene utilizar STL?
+================================================================================
+Aparece en: ObraSocial
+
+  1. Reutilizacion: Contenedores (vector, map, set) y algoritmos (sort, find,
+     for_each) ya probados y optimizados.
+  2. Eficiencia: Implementados con las mejores complejidades (sort = O(n log n)).
+  3. Genericidad: Usan templates, funcionan con cualquier tipo de dato.
+  4. Mantenibilidad: Codigo mas legible con funciones estandar reconocidas.
+  5. Menos errores: Evitan errores de manejo de memoria manual.
+
+
+================================================================================
+9. Para que sirven los iterators?
+================================================================================
+Aparece en: ObraSocial
+
+  1. Acceso secuencial: Recorren cualquier contenedor de forma uniforme.
+  2. Compatibilidad con STL: Son el "puente" entre contenedores y algoritmos
+     (sort, find, copy reciben iteradores).
+  3. Abstraccion: Ocultan la estructura interna del contenedor.
+  4. Rangos: Permiten definir rangos (begin a end) para operar sobre
+     subconjuntos.
+  5. Insercion: Iteradores especiales como back_inserter permiten insertar
+     durante operaciones como copy.
+
+
+================================================================================
+10. Ventajas y desventajas de la recursividad en C++
+================================================================================
+Aparece en: ComentariosProductos
+
+Ventajas:
+  1. Codigo mas claro: Para problemas recursivos naturales (arboles,
+     jerarquias), es mas legible que iteracion.
+  2. Solucion natural: Algunos problemas se resuelven de forma mas intuitiva.
+  3. Menos variables temporales: No hay que mantener estado en variables
+     auxiliares.
+
+Desventajas:
+  1. Stack overflow: Puede desbordar la pila con estructuras muy profundas.
+  2. Rendimiento: Cada llamada recursiva tiene overhead (crear stack frame).
+  3. Memoria: Consume mas memoria por las llamadas apiladas.
+  4. Depuracion: Mas dificil depurar codigo recursivo.
+
+
+================================================================================
+11. Por que C++ necesita herencia para implementar el polimorfismo?
+================================================================================
+Aparece en: ComentariosProductos
+
+  1. Jerarquia de tipos: La herencia establece la relacion "es-un", creando
+     la jerarquia necesaria.
+  2. Metodos virtuales: Los metodos virtual en la base permiten el enlace
+     dinamico.
+  3. Punteros base: Solo con herencia se puede usar Empleado* que apunte a
+     un Vendedor.
+  4. vtable: El compilador crea una tabla de funciones virtuales que permite
+     resolver en tiempo de ejecucion que metodo llamar segun el tipo real
+     del objeto.
+
+Sin herencia no habria jerarquia de tipos y el polimorfismo no seria posible.
+
+
+================================================================================
+12. Que operador sobreescribir en T para usar VectorOrdenado<T>?
+================================================================================
+Aparece en: SistemaDependencias
+
+Se debe sobreescribir el operador < (menor que) porque la estructura mantiene
+los elementos ordenados y necesita comparar para encontrar la posicion de
+insercion.
+
+  bool operator<(Paquete& otro) {
+      return strcmp(this->codigo, otro.codigo) < 0;
+  }
+
+
+================================================================================
+RESUMEN: Preguntas mas frecuentes
+================================================================================
+
+  Pregunta                                              | Veces
+  ------------------------------------------------------|------
+  Se puede utilizar polimorfismo? Ventaja/desventaja    |  4
+  Por que son necesarias las clases abstractas?         |  2
+  Por que templates en tipado estatico?                 |  2
+  Por que C++ usa punteros para polimorfismo?           |  2
+  Composicion: cuando? reutilizacion?                   |  1
+  Diferencias archivo binario vs texto                  |  1
+  Herencia genera acoplamiento?                         |  1
+  Ventajas de STL                                       |  1
+  Para que sirven los iterators?                        |  1
+  Ventajas/desventajas recursividad                     |  1
+  Por que C++ necesita herencia para polimorfismo?      |  1
+  Operador a sobreescribir para VectorOrdenado          |  1

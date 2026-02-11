@@ -1,3 +1,4 @@
+// ========== LIBRE: Clase MuchaTarea (tarea compuesta) ==========
 #ifndef MUCHATAREA_H
 #define MUCHATAREA_H
 

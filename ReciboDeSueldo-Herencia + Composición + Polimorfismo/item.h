@@ -11,6 +11,8 @@ public:
     virtual ~Item();
     virtual double calcular(Empleado& empleado) = 0;
     virtual char* getNombreItem() = 0;
+    // ========== agregar para punto libre ==========
+    virtual char getTipo() = 0;
 };
 
 #endif

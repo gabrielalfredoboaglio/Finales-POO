@@ -24,7 +24,7 @@ int main()
     // Obtener producto con más ingredientes
     gestora.obtenerProductoConMasIngredientes();
 
-    // Guardar en archivo de texto
+    // ========== agregar para punto libre ==========
     gestora.guardarEnTexto("productos.txt");
 
     return 0;

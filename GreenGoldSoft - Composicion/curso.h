@@ -28,6 +28,7 @@ public:
     void setTiempoHoras(int tiempoHoras);
     void agregarCorrelativa(Curso* curso);
     
+    // Libre: virtual para saber si es compuesto
     virtual char getTipo();
     int obtenerTiempoTotal();
     

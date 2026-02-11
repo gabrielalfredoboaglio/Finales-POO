@@ -1,0 +1,11 @@
+Consulta medica
+Analisis de sangre
+Radiografia
+Guardia
+Ecografia
+Tomografia
+Kinesiologia
+Cirugia estetica
+Odontologia
+Oftalmologia
+Internacion

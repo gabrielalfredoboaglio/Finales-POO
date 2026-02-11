@@ -1,9 +1,10 @@
 #include "archivo.h"
 
 Archivo::Archivo() : Nodo() {
-    peso = 0;
+    peso = 0;  // Libre: inicializar peso
 }
 
+// ========== LIBRE: Constructor con peso ==========
 Archivo::Archivo(string path, string nombre, int peso) : Nodo(path, nombre) {
     this->peso = peso;
 }
@@ -11,6 +12,7 @@ Archivo::Archivo(string path, string nombre, int peso) : Nodo(path, nombre) {
 Archivo::~Archivo() {
 }
 
+// ========== LIBRE: Getters/Setters de peso ==========
 int Archivo::getPeso() {
     return peso;
 }

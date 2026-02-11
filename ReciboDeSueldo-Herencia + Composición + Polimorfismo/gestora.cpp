@@ -79,6 +79,12 @@ void Gestora::guardarRecibo(int idEmpleado, char* archivo) {
 
     // Polimorfismo: recorrer todos los items y calcular
     for(Item* item : items) {
+        // ========== agregar para punto libre ==========
+        // Solo calcular si el empleado tiene asignado este item
+        // Si no tiene items asignados (vector vacio), se aplican todos (compatibilidad)
+        if(!emp->getTiposItems().empty() && !emp->tieneItem(item->getTipo())) {
+            continue;
+        }
         double valor = item->calcular(*emp);
         archi << item->getNombreItem() << ": $" << valor << endl;
         total += valor;
@@ -111,6 +117,10 @@ double Gestora::obtenerMontoTotalPagado() {
     for_each(empleados.begin(), empleados.end(),
         [&total, this](Empleado* emp) {
             for(Item* item : items) {
+                // ========== agregar para punto libre ==========
+                if(!emp->getTiposItems().empty() && !emp->tieneItem(item->getTipo())) {
+                    continue;
+                }
                 total += item->calcular(*emp);
             }
         });
@@ -141,4 +151,44 @@ vector<Empleado*> Gestora::obtener5MasAntiguosPorSalario() {
         });
 
     return top5;
+}
+
+// ========== agregar para punto libre ==========
+// Leer archivo binario que indica qué items aplican a cada empleado
+void Gestora::leerArchivoItems(char* archivo) {
+    ifstream archi(archivo, ios::binary);
+
+    if(!archi.is_open()) return;
+
+    EmpleadoItemArchivo eiaux;
+
+    while(archi.read((char*)&eiaux, sizeof(EmpleadoItemArchivo))) {
+        Empleado* emp = buscarEmpleado(eiaux.idEmpleado);
+        if(emp != nullptr) {
+            emp->agregarTipoItem(eiaux.tipoItem);
+        }
+    }
+
+    archi.close();
+}
+
+// ========== agregar para punto libre ==========
+// Guardar archivo binario con los items asignados a cada empleado
+void Gestora::guardarArchivoItems(char* archivo) {
+    ofstream archi(archivo, ios::binary);
+
+    if(!archi.is_open()) return;
+
+    EmpleadoItemArchivo eiaux;
+
+    for(Empleado* emp : empleados) {
+        vector<char> tipos = emp->getTiposItems();
+        for(char tipo : tipos) {
+            eiaux.idEmpleado = emp->getId();
+            eiaux.tipoItem = tipo;
+            archi.write((char*)&eiaux, sizeof(EmpleadoItemArchivo));
+        }
+    }
+
+    archi.close();
 }

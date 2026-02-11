@@ -2,6 +2,7 @@
 #define GESTORA_H
 
 #include "curso.h"
+// Libre: include de CursoCompuesto
 #include "cursocompuesto.h"
 #include <vector>
 #include <string>
@@ -15,7 +16,7 @@ struct CursoArchivo {
     char codigo[50];
     char titulo[200];
     int tiempoHoras;
-    char tipo;  // 'N' = Normal, 'C' = Compuesto
+    char tipo;  // Libre: 'N' = Normal, 'C' = Compuesto
 };
 
 // Archivo: correlativas.dat
@@ -24,7 +25,7 @@ struct CorrelativaArchivo {
     char codigo_correlativa[50];
 };
 
-// Archivo: cursos_compuestos.dat
+// ========== LIBRE: Archivo cursos_compuestos.dat ==========
 struct CursoCompuestoArchivo {
     char codigo_compuesto[50];
     char codigo_curso_contenido[50];

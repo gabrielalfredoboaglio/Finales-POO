@@ -2,7 +2,8 @@
 #include "normal.h"
 #include "archivotxt.h"
 #include "repetitiva.h"
-#include "muchatarea.h"  // ← AGREGAR
+// Libre: include de MuchaTarea
+#include "muchatarea.h"
 #include <fstream>
 #include <algorithm>
 #include <numeric>
@@ -40,8 +41,8 @@ void Gestora::leer() {
 
         Tarea* tarea = nullptr;
 
+        // ========== LIBRE: Leer tarea compuesta ==========
         if (tipo == 'M') {
-            // Leer tarea compuesta
             tarea = leerMuchaTarea(archi);
         } else {
             // Leer tarea simple
@@ -79,8 +80,8 @@ void Gestora::guardar() {
     if (!archi.is_open()) return;
 
     for (Tarea* t : tareas) {
+        // ========== LIBRE: Guardar tarea compuesta ==========
         if (t->getTipo() == 'M') {
-            // Guardar tarea compuesta
             guardarMuchaTarea(dynamic_cast<MuchaTarea*>(t), archi);
         } else {
             // Guardar tarea simple
@@ -91,6 +92,7 @@ void Gestora::guardar() {
     archi.close();
 }
 
+// ========== LIBRE: Guardar MuchaTarea en binario ==========
 void Gestora::guardarMuchaTarea(MuchaTarea* mt, std::ofstream& archi) {
     // 1. Guardar estructura de tarea compuesta
     TareaCompuestaArchivo strCompuesta;
@@ -106,6 +108,7 @@ void Gestora::guardarMuchaTarea(MuchaTarea* mt, std::ofstream& archi) {
     }
 }
 
+// ========== LIBRE: Leer MuchaTarea desde binario ==========
 MuchaTarea* Gestora::leerMuchaTarea(std::ifstream& archi) {
     // 1. Leer estructura de tarea compuesta
     TareaCompuestaArchivo strCompuesta;

@@ -14,7 +14,7 @@ struct TareaArchivo {
     char tipo;
 };
 
-// ← AGREGAR ESTA ESTRUCTURA para punto libre
+// ========== LIBRE: Struct para tarea compuesta ==========
 struct TareaCompuestaArchivo {
     TareaArchivo datosPrincipal;
     int cantidadSubtareas;

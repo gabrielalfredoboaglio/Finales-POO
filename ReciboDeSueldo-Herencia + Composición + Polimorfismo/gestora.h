@@ -17,6 +17,13 @@ struct EmpleadoArchivo {
     int empleadosACargo;
 };
 
+// ========== agregar para punto libre ==========
+// Archivo: empleados_items.dat (qué items aplican a cada empleado)
+struct EmpleadoItemArchivo {
+    int idEmpleado;
+    char tipoItem;  // 'M' = Monto, 'A' = Antiguedad, 'E' = EmpleadoACargo
+};
+
 class Gestora {
 private:
     vector<Empleado*> empleados;
@@ -38,6 +45,10 @@ public:
     Empleado* obtenerEmpleadoMasACargo();
     double obtenerMontoTotalPagado();
     vector<Empleado*> obtener5MasAntiguosPorSalario();
+
+    // ========== agregar para punto libre ==========
+    void leerArchivoItems(char* archivo);
+    void guardarArchivoItems(char* archivo);
 };
 
 #endif

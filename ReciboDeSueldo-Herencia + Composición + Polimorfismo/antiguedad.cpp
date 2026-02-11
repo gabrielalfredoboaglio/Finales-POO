@@ -11,3 +11,8 @@ double Antiguedad::calcular(Empleado& empleado) {
 char* Antiguedad::getNombreItem() {
     return (char*)"Antiguedad";
 }
+
+// ========== agregar para punto libre ==========
+char Antiguedad::getTipo() {
+    return 'A';
+}

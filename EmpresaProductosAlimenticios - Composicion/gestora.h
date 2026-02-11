@@ -71,7 +71,7 @@ public:
     Ingrediente* obtenerIngredienteMasUtilizado();
     Producto* obtenerProductoConMasIngredientes();
 
-    // PUNTO LIBRE: Guardar en archivo de texto con operador <<
+    // ========== agregar para punto libre ==========
     void guardarEnTexto(char* archivoTexto);
 
     // Getters

@@ -35,7 +35,7 @@ int main()
     vectorInt.eliminar(0);
     vectorInt.imprimir();
 
-    // Libre: Conjuntos de paquetes
+    // ========== agregar para punto libre ==========
     gestora.leerArchivosConjuntos("conjuntos.dat", "conjuntos_paquetes.dat");
     gestora.guardarArchivosConjuntos("conjuntos.dat", "conjuntos_paquetes.dat");
     char codigoConjunto[] = "conjunto1";

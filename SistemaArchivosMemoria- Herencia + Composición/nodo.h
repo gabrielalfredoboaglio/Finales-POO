@@ -23,6 +23,7 @@ public:
     void setNombre(string nombre);
 
     virtual char getTipo() = 0;
+    // ========== LIBRE: Método virtual puro para obtener peso ==========
     virtual int obtenerPeso() = 0;
     
     friend ostream& operator<<(ostream& os, Nodo& nodo);

@@ -12,6 +12,7 @@ Gestora::~Gestora() {
     for(Paquete* p : paquetes) {
         delete p;
     }
+    // ========== agregar para punto libre ==========
     for(ConjuntoPaquetes* c : conjuntos) {
         delete c;
     }
@@ -28,6 +29,7 @@ Paquete* Gestora::buscarPaquete(char* codigo) {
     return nullptr;
 }
 
+// ========== agregar para punto libre ==========
 ConjuntoPaquetes* Gestora::buscarConjunto(char* codigo) {
     for(ConjuntoPaquetes* c : conjuntos) {
         if(strcmp(c->getCodigo(), codigo) == 0) {
@@ -41,6 +43,7 @@ void Gestora::agregarPaquete(Paquete* paquete) {
     paquetes.push_back(paquete);
 }
 
+// ========== agregar para punto libre ==========
 void Gestora::agregarConjunto(ConjuntoPaquetes* conjunto) {
     conjuntos.push_back(conjunto);
 }
@@ -49,6 +52,7 @@ vector<Paquete*> Gestora::getPaquetes() {
     return paquetes;
 }
 
+// ========== agregar para punto libre ==========
 vector<ConjuntoPaquetes*> Gestora::getConjuntos() {
     return conjuntos;
 }
@@ -211,7 +215,7 @@ vector<Paquete*> Gestora::obtenerPaquetesSinDependencias() {
     return resultado;
 }
 
-// ========== LIBRE: Conjuntos de paquetes ==========
+// ========== agregar para punto libre ==========
 
 void Gestora::guardarArchivosConjuntos(char* archConjuntos, char* archConjuntosPaquetes) {
 
@@ -294,7 +298,7 @@ void Gestora::leerArchivosConjuntos(char* archConjuntos, char* archConjuntosPaqu
     }
 }
 
-// Libre: Instalar todos los paquetes de un conjunto
+// ========== agregar para punto libre ==========
 vector<Paquete*> Gestora::instalarConjunto(char* codigoConjunto) {
     ConjuntoPaquetes* conjunto = buscarConjunto(codigoConjunto);
 

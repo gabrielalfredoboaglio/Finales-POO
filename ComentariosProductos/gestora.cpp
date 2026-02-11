@@ -38,6 +38,8 @@ void Gestora::leerArchivoTexto(char* archivo) {
     string linea;
     Producto* productoActual = nullptr;
     Comentario* comentarioActual = nullptr;
+    // ========== agregar para punto libre ==========
+    int contadorId = 1;  // IDs autoincremental para identificar comentarios
 
     while(getline(arch, linea)) {
         if(linea.empty()) continue;
@@ -70,6 +72,8 @@ void Gestora::leerArchivoTexto(char* archivo) {
                 char txt[500];
                 strcpy(txt, texto.c_str());
                 comentarioActual = new Comentario(txt, puntaje);
+                // ========== agregar para punto libre ==========
+                comentarioActual->setId(contadorId++);
                 productoActual->agregarComentario(comentarioActual);
             }
         } else if(nivel == 2) {
@@ -83,6 +87,8 @@ void Gestora::leerArchivoTexto(char* archivo) {
                     char txt[500];
                     strcpy(txt, texto.c_str());
                     Comentario* hijo = new Comentario(txt, puntaje);
+                    // ========== agregar para punto libre ==========
+                    hijo->setId(contadorId++);
                     comentarioActual->agregarComentarioHijo(hijo);
                 }
             }
@@ -200,4 +206,72 @@ void Gestora::guardarArchivoBinario(char* archivo) {
     }
 
     arch.close();
+}
+
+// ========== agregar para punto libre ==========
+// Buscar un comentario por ID en todos los productos (recursivo)
+Comentario* Gestora::buscarComentario(int id) {
+    for(Producto* p : productos) {
+        vector<Comentario*> todos;
+        vector<Comentario*> comentarios = p->getComentarios();
+        for(Comentario* c : comentarios) {
+            c->obtenerTodosComentarios(todos);
+        }
+        for(Comentario* c : todos) {
+            if(c->getId() == id) {
+                return c;
+            }
+        }
+    }
+    return nullptr;
+}
+
+// ========== agregar para punto libre ==========
+// Leer respuestas múltiples desde archivo binario
+void Gestora::leerRespuestas(char* archivo) {
+    ifstream archi(archivo, ios::binary);
+
+    if(!archi.is_open()) return;
+
+    RespuestaArchivo raux;
+
+    while(archi.read((char*)&raux, sizeof(RespuestaArchivo))) {
+        Comentario* hijo = buscarComentario(raux.idComentarioHijo);
+        Comentario* padre = buscarComentario(raux.idComentarioPadre);
+
+        if(hijo != nullptr && padre != nullptr) {
+            hijo->agregarPadre(padre);
+        }
+    }
+
+    archi.close();
+}
+
+// ========== agregar para punto libre ==========
+// Guardar respuestas múltiples en archivo binario
+void Gestora::guardarRespuestas(char* archivo) {
+    ofstream archi(archivo, ios::binary);
+
+    if(!archi.is_open()) return;
+
+    RespuestaArchivo raux;
+
+    for(Producto* p : productos) {
+        vector<Comentario*> todos;
+        vector<Comentario*> comentarios = p->getComentarios();
+        for(Comentario* c : comentarios) {
+            c->obtenerTodosComentarios(todos);
+        }
+
+        for(Comentario* c : todos) {
+            vector<Comentario*> padres = c->getPadres();
+            for(Comentario* padre : padres) {
+                raux.idComentarioHijo = c->getId();
+                raux.idComentarioPadre = padre->getId();
+                archi.write((char*)&raux, sizeof(RespuestaArchivo));
+            }
+        }
+    }
+
+    archi.close();
 }

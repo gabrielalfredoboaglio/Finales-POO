@@ -5,7 +5,7 @@
 #include <vector>
 using namespace std;
 
-// ========== LIBRE: Clase ConjuntoPaquetes ==========
+// ========== agregar para punto libre (ARCHIVO ENTERO) ==========
 
 class ConjuntoPaquetes {
 private:
@@ -30,7 +30,7 @@ public:
     void setVersion(int version);
     void agregarPaquete(Paquete* paquete);
 
-    // Libre: Instalar todos los paquetes dependientes del conjunto
+    // ========== agregar para punto libre ==========
     vector<Paquete*> instalarDependientes();
 };
 

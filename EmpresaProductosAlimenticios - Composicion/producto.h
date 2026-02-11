@@ -26,7 +26,7 @@ public:
     void agregarIngrediente(Ingrediente* ingrediente);
     virtual char getTipo();
 
-    friend ostream& operator<<(ostream& os, Producto& producto);
+    friend ostream& operator<<(ostream& os, Producto& producto); // ========== agregar para punto libre ==========
 };
 
 #endif // PRODUCTO_H

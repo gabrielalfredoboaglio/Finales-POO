@@ -11,3 +11,8 @@ double EmpleadoACargo::calcular(Empleado& empleado) {
 char* EmpleadoACargo::getNombreItem() {
     return (char*)"Empleados a Cargo";
 }
+
+// ========== agregar para punto libre ==========
+char EmpleadoACargo::getTipo() {
+    return 'E';
+}

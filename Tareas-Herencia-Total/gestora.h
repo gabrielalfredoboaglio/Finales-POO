@@ -2,6 +2,7 @@
 #define GESTORA_H
 
 #include "Tarea.h"
+// Libre: include de MuchaTarea
 #include "muchatarea.h"
 #include <vector>
 #include <string>
@@ -11,7 +12,7 @@ class Gestora {
 private:
     std::vector<Tarea*> tareas;
 
-    // Métodos privados para manejar MuchaTarea
+    // ========== LIBRE: Métodos privados para MuchaTarea ==========
     void guardarMuchaTarea( MuchaTarea* mt, std::ofstream& archi);
     MuchaTarea* leerMuchaTarea(std::ifstream& archi);
 

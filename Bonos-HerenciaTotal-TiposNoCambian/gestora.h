@@ -21,6 +21,7 @@ struct JefeArchivo {
     int nro_empleado;
 };
 
+// ========== agregar para punto libre ==========
 struct VentaEmpleadoArchivo {
     int nro_empleado;
     double monto_venta;

@@ -48,7 +48,7 @@ public:
     // Ejercicio 2: Calcular descuento para una nueva venta
     double calcularDescuentoNuevaVenta(int nro_cliente, int cantidad, double monto);
 
-    // Cambiar tipo de cliente
+    // ========== agregar para punto libre ==========
     void cambiarTipoCliente(int nro_cliente, char nuevoTipo);
 
     // Ejercicio 4: Métodos con STL

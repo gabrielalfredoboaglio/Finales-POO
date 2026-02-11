@@ -1,3 +1,4 @@
+// ========== LIBRE: Clase CursoCompuesto (curso compuesto de otros cursos) ==========
 #ifndef CURSCOMPUESTO_H
 #define CURSCOMPUESTO_H
 

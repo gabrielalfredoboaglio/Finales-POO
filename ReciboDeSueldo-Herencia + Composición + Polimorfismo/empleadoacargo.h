@@ -10,6 +10,8 @@ public:
     EmpleadoACargo();
     double calcular(Empleado& empleado);
     char* getNombreItem();
+    // ========== agregar para punto libre ==========
+    char getTipo();
 };
 
 #endif

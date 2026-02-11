@@ -1,3 +1,4 @@
+// ========== LIBRE: Clase EmpleadoMuchasVentas ==========
 #ifndef EMPLEADOMUCHASVENTAS_H
 #define EMPLEADOMUCHASVENTAS_H
 

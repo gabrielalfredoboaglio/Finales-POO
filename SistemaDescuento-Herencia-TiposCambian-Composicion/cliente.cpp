@@ -32,7 +32,7 @@ Cliente::~Cliente() {
     delete estrategiaDescuento;
 }
 
-// Permite cambiar el tipo de cliente sin destruir el objeto
+// ========== agregar para punto libre ==========
 void Cliente::cambiarTipo(char nuevoTipo) {
     delete estrategiaDescuento;
 

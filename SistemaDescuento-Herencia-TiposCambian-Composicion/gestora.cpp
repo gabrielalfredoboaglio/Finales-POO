@@ -149,7 +149,7 @@ double Gestora::calcularDescuentoNuevaVenta(int nro_cliente, int cantidad, doubl
     return cli->calcularDescuento(cantidadTotal, montoTotal);
 }
 
-// ========== Cambiar tipo de cliente ==========
+// ========== agregar para punto libre ==========
 
 void Gestora::cambiarTipoCliente(int nro_cliente, char nuevoTipo) {
     Cliente* cli = buscarCliente(nro_cliente);

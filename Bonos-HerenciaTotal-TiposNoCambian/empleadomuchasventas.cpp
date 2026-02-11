@@ -1,3 +1,4 @@
+// ========== LIBRE: Implementación EmpleadoMuchasVentas ==========
 #include "EmpleadoMuchasVentas.h"
 
 empleadoMuchasVentas::empleadoMuchasVentas() {

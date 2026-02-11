@@ -51,7 +51,7 @@ vector<Ingrediente*> ProductoCompuesto::obtenerIngredientesSinRepetir() {
     return resultado;
 }
 
-// Operador << para ProductoCompuesto
+// ========== agregar para punto libre ==========
 ostream& operator<<(ostream& os, ProductoCompuesto& productoCompuesto) {
     os << "Producto Compuesto: " << productoCompuesto.getNombre() << " (Codigo: " << productoCompuesto.getCodigo() << ")" << endl;
     os << "Productos contenidos:" << endl;

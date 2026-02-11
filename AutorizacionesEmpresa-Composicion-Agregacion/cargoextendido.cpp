@@ -1,3 +1,4 @@
+// ========== LIBRE: Implementación CargoExtendido ==========
 #include "CargoExtendido.h"
 #include <algorithm>
 

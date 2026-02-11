@@ -308,7 +308,7 @@ Producto* Gestora::obtenerProductoConMasIngredientes() {
     return *maxIt;
 }
 
-// ========== PUNTO LIBRE: GUARDAR EN TEXTO ==========
+// ========== agregar para punto libre ==========
 
 void Gestora::guardarEnTexto(char* archivoTexto) {
     ofstream archivo(archivoTexto);

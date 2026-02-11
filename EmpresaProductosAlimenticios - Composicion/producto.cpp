@@ -51,7 +51,7 @@ char Producto::getTipo() {
     return 'N'; // Normal
 }
 
-// Operador << para Producto
+// ========== agregar para punto libre ==========
 ostream& operator<<(ostream& os, Producto& producto) {
     os << "Producto: " << producto.getNombre() << " (Codigo: " << producto.getCodigo() << ")" << endl;
     os << "Ingredientes:" << endl;

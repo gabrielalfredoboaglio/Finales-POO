@@ -26,6 +26,7 @@ public:
 
     // Comandos del sistema
     bool mkdir(string nombre);
+    // Libre: touch recibe peso como parámetro
     bool touch(string nombre, int peso);
     bool cd(string nombre);
     void ls();

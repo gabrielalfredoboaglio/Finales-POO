@@ -21,7 +21,7 @@ public:
     char getTipo();
     vector<Ingrediente*> obtenerIngredientesSinRepetir();
 
-    friend ostream& operator<<(ostream& os, ProductoCompuesto& productoCompuesto);
+    friend ostream& operator<<(ostream& os, ProductoCompuesto& productoCompuesto); // ========== agregar para punto libre ==========
 };
 
 #endif // PRODUCTOCOMPUESTO_H
